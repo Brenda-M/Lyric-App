@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: aqua;
+    background-color: #BDB7AB;
 }
 
 .container{
@@ -12,6 +12,12 @@ body{
     padding: 20px 50px;
 }
 
+.back-top{
+        background-image: url('../assets/people-in-concert-1763075.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 500px;
+}
 .search{
     position: absolute;
     top: 50%;
@@ -20,10 +26,10 @@ body{
 }
 
 .input{
-    width: 500px;
+    width: 350px;
     border: 3px solid #fff;
     background: transparent;
-    padding: 15px 30px;
+    padding: 10px 15px;
     border-radius: 50px;
     color: #fff;
     font-size: 20px;
@@ -32,7 +38,7 @@ body{
 
 ::placeholder{
     color: brown;
-    text-transform: uppercase;
+    font-size: 18px;
 }
 
 .close-btn{
@@ -41,8 +47,8 @@ body{
   right: 50px;
   cursor: pointer;
   width: 120px;
-  height: 55px;
-  background: pink;
+  height: 46px;
+  background: palevioletred;
   color: white;
   border-radius: 50px;
   text-transform: uppercase; 
