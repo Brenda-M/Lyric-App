@@ -1,0 +1,51 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-color: aqua;
+}
+
+.container{
+    position: relative;
+    padding: 20px 50px;
+}
+
+.search{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.input{
+    width: 500px;
+    border: 3px solid #fff;
+    background: transparent;
+    padding: 15px 30px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 20px;
+    outline: none;
+}
+
+::placeholder{
+    color: brown;
+    text-transform: uppercase;
+}
+
+.close-btn{
+  position: absolute;
+  top: 21px;
+  right: 50px;
+  cursor: pointer;
+  width: 120px;
+  height: 55px;
+  background: pink;
+  color: white;
+  border-radius: 50px;
+  text-transform: uppercase; 
+  font-weight: bold;
+  outline: none;
+}
