@@ -1,10 +1,11 @@
 *{
     margin:0;
     padding:0;
+    box-sizing: border-box;
 }
 
 body{
-    background-color: #BDB7AB;
+    background-color: white;
 }
 
 .back-top{
@@ -12,11 +13,13 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     height: 500px;
+    position:relative;
 }
 
 #tagline{
     text-align: center;
     font-family: 'Gloria Hallelujah', cursive;
+    color: blue;
 }
 
 .container{
@@ -44,7 +47,7 @@ body{
 }
 
 ::placeholder{
-    color: brown;
+    color: red;
     font-size: 18px;
 }
 
@@ -62,3 +65,35 @@ body{
   font-weight: bold;
   outline: none;
 }
+
+button{
+    cursor: pointer;
+}
+
+button:active{
+    transform: scale(0.95);
+}
+
+input:focus, button:focus{
+    outline: none;
+}
+
+ul.songs {
+    list-style-type: none;
+    padding: 0;
+}
+  
+ul.songs li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.btn {
+    background-color: #8d56fd;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    padding: 4px 10px;
+  }

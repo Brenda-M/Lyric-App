@@ -7,18 +7,20 @@
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
     <title>Welcome to Lyrics World</title>
 </head>
-<body>
-    <div class="card back-top">
+<body class="text-center">
+    <div class="back-top">
         <div class="search">
             <h1 id="tagline">Find lyrics for any song below</h1>
             <div class="container">
-                <input type="text" class="input" id="searchMusic" placeholder="Search artist, track, or lyrics">
-                <input type="button" value="Search" class="close-btn">
+                <form id="form">
+                    <input type="text" class="input" id="searchMusic" placeholder="Search artist, track, or lyrics">
+                    <button class="close-btn">Search</button>
+                </form>
             </div>
         </div>
     </div>
-
-    <div id="result" class="card">
+    
+    <div class="container" id="result">
         <p>Results will be displayed here</p>
     </div>
     
