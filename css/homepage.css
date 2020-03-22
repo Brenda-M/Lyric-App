@@ -9,11 +9,13 @@ body{
 }
 
 .back-top{
-    background-image: url('../assets/people-in-concert-1763075.jpg');
+    background-image: url('../assets/photo.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 500px;
+    height: 400px;
     position:relative;
+    overflow: hidden;
+    opacity: 0.85;
 }
 
 #tagline{
