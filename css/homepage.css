@@ -15,13 +15,29 @@ body{
     height: 400px;
     position:relative;
     overflow: hidden;
-    opacity: 0.85;
+}
+
+.back-top::before{
+    content: '';
+    display: block;
+    background-color: #333;
+    width: 100%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    opacity: .3;
+}
+
+.back-top > *{
+    z-index: 10;
+    position: relative;
 }
 
 #tagline{
     text-align: center;
     font-family: 'Gloria Hallelujah', cursive;
-    color: blue;
+    color: #8d56fd;
 }
 
 .container{
@@ -49,7 +65,7 @@ body{
 }
 
 ::placeholder{
-    color: red;
+    color: #ffff;
     font-size: 18px;
 }
 
