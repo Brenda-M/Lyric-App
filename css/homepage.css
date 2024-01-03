@@ -1,156 +1,217 @@
-@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Poppins&display=swap");
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background: 	#ffeaea;
-    font-family: "Poppins", sans-serif;
+  background: #ffeaea;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-h2{
-    margin-bottom: .5rem;
+h2 {
+  margin-bottom: 0.5rem;
 }
 
-.back-top{
-    background-image: url('../assets/photo.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 400px;
-    position:relative;
-    overflow: hidden;
+.container {
+  position: relative;
+  padding: 20px 50px;
 }
 
-.back-top::before{
-    content: '';
-    display: block;
-    background-color: #333;
-    width: 100%;
-    height:100%;
-    position: absolute;
-    top:0;
-    left:0;
-    opacity: .5;
+.back-top {
+  position: relative;
+  background-image: url("../assets/photo.jpg");
+  background-size: cover;
+  width: 100%;
+	max-width: 100% ;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 10vw;
+  height: auto;
 }
 
-.back-top > *{
-    z-index: 10;
-    position: relative;
-}
-
-#tagline{
-    text-align: center;
-    font-family: "Black Ops One", sans-serif;
-    color: #8d56fd;
-    font-size: 2rem;
-}
-
-.container{
-    position: relative;
-    padding: 20px 50px;
-}
-
-
-.search{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    text-align: center;
-    transform: translate(-50%,-50%);
-}
-
-.input{
-    width: 450px;
-    border: 3px solid #fff;
-    background: transparent;
-    padding: 10px 15px;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 20px;
-    outline: none;
-}
-
-::placeholder{
-    color: #ffff;
-    font-size: 18px;
-}
-
-.close-btn{
+.back-top::before {
+  content: "";
   position: absolute;
-  top: 21px;
-  right: 50px;
-  cursor: pointer;
-  width: 120px;
-  height: 46px;
-  background: palevioletred;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.back-top > * {
+  z-index: 10;
+  position: relative;
+}
+
+#tagline {
+	position: relative;
+  text-align: center;
+  font-family: "Black Ops One", sans-serif;
+  color: #8d56fd;
+  font-size: 2rem;
+}
+
+
+.form-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.centered{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 3rem
+}
+
+.input-container {
+  position: relative;
+	max-width: 600px;
+  width: 100%;
+}
+
+.input-btn {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+	height: 43px;
+	background: palevioletred;
   color: white;
   border-radius: 50px;
-  text-transform: uppercase; 
-  font-weight: bold;
+	cursor: pointer;
+}
+
+.input {
+  width: 100%;
+	/* max-width: 600px; */
+	padding: 10px 15px;
+  margin-bottom: 10px;
+	border: 3px solid #fff;
+	border-radius: 50px;
+  color: #fff;
+  font-size: 20px;
+  outline: none;
+	background: transparent;
+}
+
+.container.back-top .close-btn:hover {
+  background-color: #333;
+}
+
+#error{
+	color: palevioletred;
+}
+
+
+/* Mobile Responsive Styles */
+@media only screen and (max-width: 600px) {
+  .container.back-top h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .container.back-top #form {
+    width: 80%;
+  }
+
+  .container.back-top .input,
+  .container.back-top .close-btn {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .container.back-top .close-btn {
+    width: 40px; /* Adjusted width for mobile responsiveness */
+    height: 40px; /* Adjusted height for mobile responsiveness */
+    top: initial;
+    right: initial;
+    margin-top: 10px; /* Added margin to separate the button from the input */
+    position: relative;
+    transform: none; /* Reset the transform for mobile responsiveness */
+  }
+}
+
+
+
+::placeholder {
+  color: #ffff;
+  font-size: 18px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+input:focus,
+button:focus {
   outline: none;
 }
 
-button{
-    cursor: pointer;
-    border: none;
-    color: white;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-button:active{
-    transform: scale(0.95);
-}
-
-input:focus, button:focus{
-    outline: none;
-}
-
 ul.songs {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
-  
+
 ul.songs li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
 }
 
 .btn {
-    background-color: #8d56fd;
-    border: 0;
-    border-radius: 10px;
-    color: #fff;
-    /* padding: 4px 10px; */
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-  }
+  background-color: #8d56fd;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
 
-#result{
-    text-align: center; 
+#result {
+  text-align: center;
 }
 
 .loader {
-    display: none;
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #8d56fd;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: spin 1s linear infinite;
+  display: none;
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #8d56fd;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
