@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Poppins&display=swap');
+
 *{
     margin:0;
     padding:0;
     box-sizing: border-box;
 }
 
-body{
-    background-color: white;
+body {
+    background: 	#ffeaea;
+    font-family: "Poppins", sans-serif;
+}
+
+h2{
+    margin-bottom: .5rem;
 }
 
 .back-top{
@@ -26,7 +33,7 @@ body{
     position: absolute;
     top:0;
     left:0;
-    opacity: .3;
+    opacity: .5;
 }
 
 .back-top > *{
@@ -36,8 +43,9 @@ body{
 
 #tagline{
     text-align: center;
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: "Black Ops One", sans-serif;
     color: #8d56fd;
+    font-size: 2rem;
 }
 
 .container{
@@ -50,6 +58,7 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
+    text-align: center;
     transform: translate(-50%,-50%);
 }
 
@@ -86,6 +95,12 @@ body{
 
 button{
     cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
 button:active{
@@ -113,5 +128,29 @@ ul.songs li {
     border: 0;
     border-radius: 10px;
     color: #fff;
-    padding: 4px 10px;
+    /* padding: 4px 10px; */
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
   }
+
+#result{
+    text-align: center; 
+}
+
+.loader {
+    display: none;
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #8d56fd;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

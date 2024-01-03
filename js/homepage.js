@@ -1,93 +1,85 @@
-//we making  two requests to the api. 1. get a list of songs when we type search button
-//2. when we press get lyrics button it makes another request to the api with the song and artist name
-
 const form = document.getElementById('form');
 const search = document.getElementById('searchMusic');
 const result = document.getElementById('result');
 const more = document.getElementById('more');
+const loader = document.getElementById('loader');
 
 const apiURL = 'https://api.lyrics.ovh';
 
-//search by song or artist
-async function searchSongs(term){
-	const res = await fetch(`${apiURL}/suggest/${term}`);
-	const data = await res.json();
-
-	showData(data);
+function toggleLoader(show) {
+	loader.style.display = show ? 'block' : 'none';
 }
 
-//diplay search results in the DOM
-//the data parameter has an array called data which has 15 items in it
-function showData(data){
-	result.innerHTML = `
-	<ul class="songs">
-		${data.data.map(song => `<li>
-				<span><strong>${song.artist.name}</strong> - ${song.title}</span>
-				<button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
-				</li>`
+function searchSongs(term) {
+	toggleLoader(true);
+	fetch(`${apiURL}/suggest/${term}`)
+		.then(res => res.json())
+		.then(data => showData(data))
+		.catch(error => console.error('Error fetching data:', error))
+		.finally(() => toggleLoader(false)); // Hide loader after success or error
+}
+
+function showData(data) {
+	const songsList = data.data
+		.map(
+			(song) => `<li>
+        <span><strong>${song.artist.name}</strong> - ${song.title}</span>
+        <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
+      </li>`
 		)
-		.join('')}
-	</ul>`;
+		.join('');
 
-	if(data.prev || data.next){
-		more.innerHTML = `
-			${data.prev ? `<button class="btn" onclick="getMoreSongs('${data.prev}')">Prev</button>` : '' }
-			${data.next ? `<button class="btn" onclick="getMoreSongs('${data.next}')">Next</button>` : '' }
-		`;
-	} else{
-		more.innerHTML = '';
-	}
+	result.innerHTML = `<ul class="songs">${songsList}</ul>`;
+	more.innerHTML = data.prev || data.next
+		? `<button class="btn" onclick="getMoreSongs('${data.prev}')">Prev</button>
+       <button class="btn" onclick="getMoreSongs('${data.next}')">Next</button>`
+		: '';
 }
 
-//getting more songs
-//https://cors-anywhere.herokuapp.com has a CORS proxy to allow cross-origin requests
-async function getMoreSongs(url){
-	const res = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
-	const data = await res.json();
-
-	showData(data);
+function getMoreSongs(url) {
+	toggleLoader(true);
+	fetch(`https://cors-anywhere.herokuapp.com/${url}`)
+		.then(res => res.json())
+		.then(data => showData(data))
+		.catch(error => console.error('Error fetching more songs:', error))
+		.finally(() => toggleLoader(false)); // Hide loader after success or error
 }
 
-//get lyrics for song
-async function getLyrics(artist, songTitle){
-	const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
-	const data = await res.json();
+function getLyrics(artist, songTitle) {
+	toggleLoader(true);
+	fetch(`${apiURL}/v1/${artist}/${songTitle}`)
+		.then(res => res.json())
+		.then(data => {
+			const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
 
-	// const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, 'br');
-
-	const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
-
-	result.innerHTML = `<h2><strong> ${artist}</strong> - ${songTitle}</h2>
-	<span>${lyrics}</span>`;
-
-	more.innerHTML = '';
+			result.innerHTML = `<h2><strong>${artist}</strong> - ${songTitle}</h2>
+                        <span>${lyrics}</span>`;
+			more.innerHTML = '';
+		})
+		.catch(error => console.error('Error fetching lyrics:', error))
+		.finally(() => toggleLoader(false)); // Hide loader after success or error
 }
 
-//Event Listeners
-form.addEventListener('submit', e => {
+form.addEventListener('submit', (e) => {
 	e.preventDefault();
-
 	const searchTerm = search.value.trim();
 
-//validation to ensure user typed something in search box
-
-if(!searchTerm){
-	alert("Please enter a search term");
-} else {
-	searchSongs(searchTerm);
-}
-
+	if (!searchTerm) {
+		alert('Please enter a search term');
+	} else {
+		searchSongs(searchTerm);
+		form.reset();
+	}
 });
 
-//get Lyrics from button
-result.addEventListener('click', e => {
+result.addEventListener('click', (e) => {
 	const clickedEl = e.target;
-  
+
 	if (clickedEl.tagName === 'BUTTON') {
-	  const artist = clickedEl.getAttribute('data-artist');
-	  const songTitle = clickedEl.getAttribute('data-songtitle');
-  
-	  getLyrics(artist, songTitle);
+		const artist = clickedEl.getAttribute('data-artist');
+		const songTitle = clickedEl.getAttribute('data-songtitle');
+		getLyrics(artist, songTitle);
 	}
-  });
+});
+
 
